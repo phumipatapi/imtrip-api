@@ -16,7 +16,7 @@ const activitySchema = mongoose.Schema({
     facility_food: getMongooseType('Array', false),
     facility_travel: getMongooseType('Array', false),
     facility_other: getMongooseType('Array', false),
-    activity_image: [getMongooseType('String', true),],
+    activity_image: getMongooseType('Array', true),
     participation_limit: getMongooseType('Number', true),
     activity_price: getMongooseType('Number', true),
     status: getMongooseType('String', true),
