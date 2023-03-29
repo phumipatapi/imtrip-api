@@ -12,7 +12,33 @@ module.exports = {
                 payload: {},
             }
             try {
-                const dataResult = await new activitySchema(data).save()
+                const activity = new activitySchema({
+                    district: data.district,
+                    activity_type: data.activity_type,
+                    is_use_to_activity: data.is_use_to_activity,
+                    activity_name: data.activity_name,
+                    activity_detail: data.activity_detail,
+                    activity_time: data.activity_time,
+                    address: data.address,
+                    latitude: data.latitude,
+                    longtitude: data.longtitude,
+                    participation_limit: data.participation_limit,
+                    activity_price: data.activity_price,
+                    status: data.status,
+                    user_id: data.user_id,
+                })
+                // Store activity image files as base64-encoded strings
+                const activityImages = []
+                for (let i = 0; i < data.activity_image.length; i++) {
+                    const imageBuffer = fs.readFileSync(data.activity_image[i].path)
+                    const base64Image = imageBuffer.toString('base64')
+                    activityImages.push({
+                        data: base64Image,
+                        contentType: data.activity_image[i].mimetype,
+                    })
+                }
+                activity.activity_image = activityImages
+                const dataResult = await activity.save()
                 response.payload.data = dataResult
                 response.success = true
             } catch (err) {
