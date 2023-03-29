@@ -5,10 +5,8 @@ const {
     deleteActivityById,
     updateActivityById,
     updateStatusActivityById,
+    getActivityByUserId
 } = require('../model/activity_model')
-
-
-
 
 module.exports = {
     insertActivityController: async (req, res, next) => {
