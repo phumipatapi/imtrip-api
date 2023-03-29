@@ -117,7 +117,7 @@ module.exports = {
                     { user_id: id },
                     '-__v',
                 )
-                response.payload.data = [dataResult]
+                response.payload.data = dataResult
                 response.success = true
             } catch (err) {
                 response.success = false
