@@ -5,6 +5,7 @@ const {
     deleteActivityById,
     updateActivityById,
     updateStatusActivityById,
+    getActivityByUserId
 } = require('../model/activity_model')
 
 
@@ -63,4 +64,14 @@ module.exports = {
             next(err)
         }
     },
+    getActivityByUserIdController: async (req, res, next) => {
+        try {
+            const jsonResponse = await getActivityByUserId(req.params.id)
+            res.status(200)
+            res.json(jsonResponse)
+        } catch (err) {
+            next(err)
+        }
+    }
+
 }

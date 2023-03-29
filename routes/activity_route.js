@@ -11,6 +11,7 @@ const {
     deleteActivityController,
     updateActivityByIdController,
     updateStatusActivityByIdController,
+    getActivityByUserIdController
 } = require('../controller/activity_controller')
 
 
@@ -28,13 +29,13 @@ router.post('/insert', [
     body('participation_limit').notEmpty(),
     body('activity_price').notEmpty(),
     body('status').notEmpty(),
-    ], apiValidation, insertActivityController,
+], apiValidation, insertActivityController,
 )
 
 
 router.get('/get_by_id/:id', [
     param('id').notEmpty(),
-    ], apiValidation, getActivityByIdController,
+], apiValidation, getActivityByIdController,
 )
 
 
@@ -43,18 +44,23 @@ router.get('/get/all', getAllActivityController)
 
 router.post('/delete/:id', [
     param('id').notEmpty(),
-    ], apiValidation, deleteActivityController,
+], apiValidation, deleteActivityController,
 )
 
 router.post('/update/:id', [
     param('id').notEmpty(),
-    ], apiValidation, updateActivityByIdController,
+], apiValidation, updateActivityByIdController,
 )
 
 router.post('/update_status/:id', [
     param('id').notEmpty(),
     body('status').notEmpty(),
-    ], apiValidation, updateStatusActivityByIdController,
+], apiValidation, updateStatusActivityByIdController,
+)
+
+router.get('/get_by_user_id/:id', [
+    param('id').notEmpty(),
+], apiValidation, getActivityByUserIdController,
 )
 
 
