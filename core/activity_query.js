@@ -113,7 +113,7 @@ module.exports = {
                 payload: {},
             }
             try {
-                let dataResult = await activitySchema.findOne(
+                let dataResult = await activitySchema.find(
                     { user_id: id },
                     '-__v',
                 )

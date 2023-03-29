@@ -29,6 +29,7 @@ router.post('/insert', [
     body('participation_limit').notEmpty(),
     body('activity_price').notEmpty(),
     body('status').notEmpty(),
+    body('user_id').notEmpty(),
 ], apiValidation, insertActivityController,
 )
 
