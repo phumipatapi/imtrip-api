@@ -31,7 +31,7 @@ module.exports = {
             }
             try {
                 let dataResult = await activitySchema.findOne(
-                    {_id: id},
+                    { _id: id },
                     '-__v',
                 )
                 response.payload.data = [dataResult]
@@ -72,7 +72,7 @@ module.exports = {
                 payload: {},
             }
             try {
-                let dataResult = await activitySchema.deleteOne({_id: id})
+                let dataResult = await activitySchema.deleteOne({ _id: id })
                 response.payload.data = dataResult
                 response.success = true
             } catch (err) {
@@ -90,9 +90,9 @@ module.exports = {
                 payload: {},
             }
             try {
-                let dataResult = await activitySchema.findOneAndUpdate({_id: id}, data)
+                let dataResult = await activitySchema.findOneAndUpdate({ _id: id }, data)
                 let findResult = await activitySchema.findOne(
-                    {_id: id},
+                    { _id: id },
                     '-__v',
                 )
                 response.payload.old_data = dataResult
@@ -106,4 +106,26 @@ module.exports = {
             }
         })
     },
+    getActivityByUserId: async (id) => {
+        return connect().then(async (mongoose) => {
+            let response = {
+                success: false,
+                payload: {},
+            }
+            try {
+                let dataResult = await activitySchema.findOne(
+                    { user_id: id },
+                    '-__v',
+                )
+                response.payload.data = [dataResult]
+                response.success = true
+            } catch (err) {
+                response.success = false
+            } finally {
+                mongoose.connection.close()
+                return response
+            }
+        })
+
+    }
 }

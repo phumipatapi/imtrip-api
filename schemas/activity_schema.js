@@ -20,6 +20,7 @@ const activitySchema = mongoose.Schema({
     participation_limit:    getMongooseType('Number', true),
     activity_price:         getMongooseType('Number', true),
     status:                 getMongooseType('String', true),
+    user_id:                getMongooseType('String', true),
 },
 {
     timestamps: {

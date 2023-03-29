@@ -4,6 +4,7 @@ const {
     getAllActivityQuery,
     deleteActivityQueryById,
     updateActivityQueryById,
+    getActivityByUserId
 } = require('../core/activity_query')
 const { successValidator } = require('../functions/functions')
 
@@ -89,4 +90,16 @@ module.exports = {
             console.log(err)
         }
     },
+    getActivityByUserId: async (id) => {
+        try {
+            let response = await getActivityByUserId(id)
+            return successValidator(
+                response,
+                'Get data successful.',
+                'Failed to get data.',
+            )
+        } catch (err) {
+            console.log(err)
+        }
+    }
 }
