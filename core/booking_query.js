@@ -134,7 +134,7 @@ module.exports = {
             }
             try {
                 let dataResult = await bookingSchema.find(
-                    { activity_id: id },
+                    { booking_user_id: id },
                     '-__v',
                 )
                 response.payload.data = dataResult
