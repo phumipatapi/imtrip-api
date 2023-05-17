@@ -9,6 +9,8 @@ const bookingSchema = mongoose.Schema({
     booking_total_price: getMongooseType('Number', true),
     booking_status: getMongooseType('String', true),
     activity_id : getMongooseType('String', true),
+    activity_name : getMongooseType('String', true),
+    activity_district : getMongooseType('String', true),
 },
     {
         timestamps: {
