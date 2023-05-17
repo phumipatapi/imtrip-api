@@ -54,7 +54,7 @@ router.post('/update/:id', [
 
 router.post('/update_status/:id', [
     param('id').notEmpty(),
-    body('status').notEmpty(),
+    body('booking_status').notEmpty(),
 ], apiValidation, updateStatusBookingByIdController,
 )
 
