@@ -28,9 +28,9 @@ module.exports = {
               payload: {},
             };
             try {
-              const regex = new RegExp(search, 'i');
+             
               const dataResult = await activitySchema.find(
-                { activity_name: regex },
+                { activity_name: search },
                 '-__v',
               );
               response.payload.data = dataResult;
