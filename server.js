@@ -2,7 +2,7 @@ const express = require('express')
 const bodyparser = require('body-parser')
 const cors = require('cors')
 const dotenv = require('dotenv')
-
+const mongoose = require('mongoose')
 dotenv.config()
 
 const PORT = process.env.PORT || 5000
@@ -19,6 +19,7 @@ const routeActivity = require('./routes/activity_route')
 const routeBooking = require('./routes/booking_route')
 
 const routeFavoriteActivity = require('./routes/favorite_activity_route')
+const { Activity } = require('discord.js')
 
 
 app.get('/', (req, res) => {
@@ -29,6 +30,21 @@ app.get('/', (req, res) => {
 
 
 app.use('/activity', routeActivity)
+
+app.use('/activity/search/:keyword', async (req, res, next) => {
+    try {
+      let data = await mongoose.model('activities').find({
+        $or: [
+          { activity_name: { $regex: req.params.keyword } },
+          { district: { $regex: req.params.keyword } }
+        ]
+      });
+  
+      res.json(data); // Send the response with the retrieved data
+    } catch (error) {
+      next(error); // Pass the error to the Express error handler
+    }
+  });
 
 app.use('/booking', routeBooking)
 
