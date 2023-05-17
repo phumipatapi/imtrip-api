@@ -30,7 +30,7 @@ module.exports = {
             try {
               const regex = new RegExp(search, 'i');
               const dataResult = await activitySchema.find(
-                { $or: [{ activity_name: regex }, { district: regex }] },
+                { activity_name: regex },
                 '-__v',
               );
               response.payload.data = dataResult;
