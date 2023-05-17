@@ -1,5 +1,5 @@
 const connect = require('./connect')
-const bookingSchema = require('../schemas/bookings_schema')
+const bookingSchema = require('../schemas/booking_schema.js')
 
 
 module.exports = {
