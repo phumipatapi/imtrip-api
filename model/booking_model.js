@@ -72,7 +72,7 @@ module.exports = {
     },
     updateStatusBookingById: async (id, data) => {
         try {
-            if (!['pending', 'complete', 'cancel'].includes(data.status)) {
+            if (!['pending', 'complete', 'cancel', 'booked'].includes(data.status)) {
                 return {
                     success: false,
                     payload: {
