@@ -40,10 +40,10 @@ router.get('/get_by_id/:id', [
 ], apiValidation, getActivityByIdController,
 )
 
-// router.get('/search/:search', [
-//     param('search').notEmpty(),
-// ], apiValidation, searchActivityController,
-// )
+router.get('/search/:search', [
+    param('search').notEmpty(),
+], apiValidation, searchActivityController,
+)
 
 
 router.get('/get/all', getAllActivityController)
