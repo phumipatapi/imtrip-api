@@ -19,8 +19,6 @@ const routeActivity = require('./routes/activity_route')
 const routeBooking = require('./routes/booking_route')
 
 const routeFavoriteActivity = require('./routes/favorite_activity_route')
-const { Activity } = require('discord.js')
-
 
 app.get('/', (req, res) => {
     res.status(200).json({
