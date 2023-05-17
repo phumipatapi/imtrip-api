@@ -126,7 +126,7 @@ module.exports = {
         })
 
     },
-    getBookingByActivityId: async (id) => {
+    getBookingQueryByActivityId: async (id) => {
         return connect().then(async (mongoose) => {
             let response = {
                 success: false,
