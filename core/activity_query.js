@@ -32,7 +32,7 @@ module.exports = {
                     {
                         $or: [
                             { activity_name: search },
-                            { activity_district: search }
+                            { district: search }
                         ]
                     },
                     '-__v',
