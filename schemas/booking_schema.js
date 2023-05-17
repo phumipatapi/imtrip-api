@@ -11,6 +11,9 @@ const bookingSchema = mongoose.Schema({
     activity_id : getMongooseType('String', true),
     activity_name : getMongooseType('String', true),
     activity_district : getMongooseType('String', true),
+    booking_user_name : getMongooseType('String', true),
+    booking_user_phone : getMongooseType('String', true),
+    booking_user_image : getMongooseType('String', true),
 },
     {
         timestamps: {
