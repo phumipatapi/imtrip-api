@@ -40,13 +40,7 @@ module.exports = {
                 response.payload.data = dataResult
                 response.success = true
     
-                if (dataResult.length > 0) {
-                    if (dataResult[0].activity_name === search) {
-                        response.matchedField = 'activity_name';
-                    } else if (dataResult[0].activity_district === search) {
-                        response.matchedField = 'activity_district';
-                    }
-                }
+               
             } catch (err) {
                 response.success = false
             } finally {
