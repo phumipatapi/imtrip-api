@@ -11,7 +11,8 @@ const {
     deleteActivityController,
     updateActivityByIdController,
     updateStatusActivityByIdController,
-    getActivityByUserIdController
+    getActivityByUserIdController,
+    searchActivityController
 } = require('../controller/activity_controller')
 
 
@@ -37,6 +38,11 @@ router.post('/insert', [
 router.get('/get_by_id/:id', [
     param('id').notEmpty(),
 ], apiValidation, getActivityByIdController,
+)
+
+router.get('/search/:search', [
+    param('search').notEmpty(),
+], apiValidation, searchActivityController,
 )
 
 

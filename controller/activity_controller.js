@@ -5,13 +5,23 @@ const {
     deleteActivityById,
     updateActivityById,
     updateStatusActivityById,
-    getActivityByUserId
+    getActivityByUserId,
+    searchActivity
 } = require('../model/activity_model')
 
 module.exports = {
     insertActivityController: async (req, res, next) => {
         try {
             const jsonResponse = await insertActivity(req.body)
+            res.status(200)
+            res.json(jsonResponse)
+        } catch (err) {
+            next(err)
+        }
+    },
+    searchActivityController: async (req, res, next) => {
+        try {
+            const jsonResponse = await searchActivity(req.params.id)
             res.status(200)
             res.json(jsonResponse)
         } catch (err) {

@@ -4,7 +4,9 @@ const {
     getAllActivityQuery,
     deleteActivityQueryById,
     updateActivityQueryById,
-    getActivityByUserId
+    getActivityByUserId,
+    searchActivityQuery
+
 } = require('../core/activity_query')
 const { successValidator } = require('../functions/functions')
 
@@ -16,6 +18,18 @@ module.exports = {
                 response,
                 'Insert successful.',
                 'Insert failed.',
+            )
+        } catch (err) {
+            console.log(err)
+        }
+    },
+    searchActivity: async (search) => {
+        try {
+            let response = await searchActivityQuery(search)
+            return successValidator(
+                response,
+                'Get data successful.',
+                'Failed to get data.',
             )
         } catch (err) {
             console.log(err)

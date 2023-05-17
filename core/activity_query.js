@@ -21,6 +21,40 @@ module.exports = {
             }
         })
     },
+    searchActivityQuery: async (search) => {
+        return connect().then(async (mongoose) => {
+            let response = {
+                success: false,
+                payload: {},
+            }
+            try {
+                let dataResult = await activitySchema.find(
+                    {
+                        $or: [
+                            { activity_name: search },
+                            { activity_district: search }
+                        ]
+                    },
+                    '-__v',
+                )
+                response.payload.data = dataResult
+                response.success = true
+    
+                if (dataResult.length > 0) {
+                    if (dataResult[0].activity_name === search) {
+                        response.matchedField = 'activity_name';
+                    } else if (dataResult[0].activity_district === search) {
+                        response.matchedField = 'activity_district';
+                    }
+                }
+            } catch (err) {
+                response.success = false
+            } finally {
+                mongoose.connection.close()
+                return response
+            }
+        })
+    },
     getActivityQueryById: async (id) => {
         return connect().then(async (mongoose) => {
             let response = {
