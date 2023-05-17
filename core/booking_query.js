@@ -126,7 +126,7 @@ module.exports = {
         })
 
     },
-    getBookingByUserId: async (id) => {
+    getBookingByActivityId: async (id) => {
         return connect().then(async (mongoose) => {
             let response = {
                 success: false,
@@ -134,7 +134,7 @@ module.exports = {
             }
             try {
                 let dataResult = await bookingSchema.find(
-                    { booking_user_id: id },
+                    { activity_id: id },
                     '-__v',
                 )
                 response.payload.data = dataResult

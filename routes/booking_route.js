@@ -11,7 +11,8 @@ const {
     deleteBookingByIdController,
     updateBookingByIdController,
     updateStatusBookingByIdController,
-    getBookingByUserIdController
+    getBookingByUserIdController,
+    getBookingByActivityIdController
 } = require('../controller/booking_controller')
 
 
@@ -32,6 +33,7 @@ router.get('/get_by_id/:id', [
     param('id').notEmpty(),
 ], apiValidation, getBookingByIdController,
 )
+
 
 
 router.get('/get/all', getAllBookingController)
@@ -56,6 +58,11 @@ router.post('/update_status/:id', [
 router.get('/get_by_user_id/:id', [
     param('id').notEmpty(),
 ], apiValidation, getBookingByUserIdController,
+)
+
+router.get('/get_by_activity_id/:id', [
+    param('id').notEmpty(),
+], apiValidation, getBookingByActivityIdController,
 )
 
 

@@ -5,7 +5,8 @@ const {
     deleteBookingById,
     updateBookingById,
     updateStatusBookingById,
-    getBookingByUserId
+    getBookingByUserId,
+    getBookingByActivityId
 } = require('../model/booking_model')
 
 module.exports = {
@@ -66,6 +67,15 @@ module.exports = {
     getBookingByUserIdController: async (req, res, next) => {
         try {
             const jsonResponse = await getBookingByUserId(req.params.id)
+            res.status(200)
+            res.json(jsonResponse)
+        } catch (err) {
+            next(err)
+        }
+    },
+    getBookingByActivityIdController: async (req, res, next) => {
+        try {
+            const jsonResponse = await getBookingByActivityId(req.params.id)
             res.status(200)
             res.json(jsonResponse)
         } catch (err) {
