@@ -30,11 +30,18 @@ module.exports = {
             try {
              
               const dataResult = await activitySchema.find(
-                { activity_name: {
-                    $regex: new RegExp(search, 'i'),
-                } },
+                {
+                    $or: [
+                        { activity_name: { $regex: search, $options: 'i' } },
+                        { district: { $regex: search, $options: 'i' } },
+                    ],
+
+                 },
                 '-__v',
               );
+                 
+             
+    
               response.payload.data = dataResult;
               response.success = true;
             } catch (err) {

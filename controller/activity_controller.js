@@ -21,7 +21,7 @@ module.exports = {
     },
     searchActivityController: async (req, res, next) => {
         try {
-            const jsonResponse = await searchActivity(req.params.id)
+            const jsonResponse = await searchActivity(req.params.search)
             res.status(200)
             res.json(jsonResponse)
         } catch (err) {
