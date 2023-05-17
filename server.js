@@ -16,6 +16,8 @@ app.use(bodyparser.urlencoded({ extended: false }))
 
 const routeActivity = require('./routes/activity_route')
 
+const routeBooking = require('./routes/booking_route')
+
 
 app.get('/', (req, res) => {
     res.status(200).json({
@@ -25,6 +27,8 @@ app.get('/', (req, res) => {
 
 
 app.use('/activity', routeActivity)
+
+app.use('/booking', routeBooking)
 
 
 app.use((req, res, next) => {

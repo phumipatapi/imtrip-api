@@ -1,16 +1,16 @@
 const connect = require('./connect')
-const activitySchema = require('../schemas/activity_schema')
+const bookingSchema = require('../schemas/bookings_schema')
 
 
 module.exports = {
-    insertActivityQuery: async (data) => {
+    insertBookingQuery: async (data) => {
         return connect().then(async (mongoose) => {
             let response = {
                 success: false,
                 payload: {},
             }
             try {
-                const dataResult = await new activitySchema(data).save()
+                const dataResult = await new bookingSchema(data).save()
                 response.payload.data = dataResult
                 response.success = true
             } catch (err) {
@@ -21,14 +21,14 @@ module.exports = {
             }
         })
     },
-    getActivityQueryById: async (id) => {
+    getBookingQueryById: async (id) => {
         return connect().then(async (mongoose) => {
             let response = {
                 success: false,
                 payload: {},
             }
             try {
-                let dataResult = await activitySchema.findOne(
+                let dataResult = await bookingSchema.findOne(
                     { _id: id },
                     '-__v',
                 )
@@ -42,14 +42,14 @@ module.exports = {
             }
         })
     },
-    getAllActivityQuery: async () => {
+    getAllBookingQuery: async () => {
         return connect().then(async (mongoose) => {
             let response = {
                 success: false,
                 payload: {},
             }
             try {
-                let dataResult = await activitySchema.find(
+                let dataResult = await bookingSchema.find(
                     {},
                     '-__v',
                 )
@@ -63,14 +63,14 @@ module.exports = {
             }
         })
     },
-    deleteActivityQueryById: async (id) => {
+    deleteBookingQueryById: async (id) => {
         return connect().then(async (mongoose) => {
             let response = {
                 success: false,
                 payload: {},
             }
             try {
-                let dataResult = await activitySchema.deleteOne({ _id: id })
+                let dataResult = await bookingSchema.deleteOne({ _id: id })
                 response.payload.data = dataResult
                 response.success = true
             } catch (err) {
@@ -81,15 +81,15 @@ module.exports = {
             }
         })
     },
-    updateActivityQueryById: async (id, data) => {
+    updateBookingQueryById: async (id, data) => {
         return connect().then(async (mongoose) => {
             let response = {
                 success: false,
                 payload: {},
             }
             try {
-                let dataResult = await activitySchema.findOneAndUpdate({ _id: id }, data)
-                let findResult = await activitySchema.findOne(
+                let dataResult = await bookingSchema.findOneAndUpdate({ _id: id }, data)
+                let findResult = await bookingSchema.findOne(
                     { _id: id },
                     '-__v',
                 )
@@ -104,15 +104,37 @@ module.exports = {
             }
         })
     },
-    getActivityByUserId: async (id) => {
+    getBookingByUserId: async (id) => {
         return connect().then(async (mongoose) => {
             let response = {
                 success: false,
                 payload: {},
             }
             try {
-                let dataResult = await activitySchema.find(
-                    { user_id: id },
+                let dataResult = await bookingSchema.find(
+                    { booking_user_id: id },
+                    '-__v',
+                )
+                response.payload.data = dataResult
+                response.success = true
+            } catch (err) {
+                response.success = false
+            } finally {
+                mongoose.connection.close()
+                return response
+            }
+        })
+
+    },
+    getBookingByUserId: async (id) => {
+        return connect().then(async (mongoose) => {
+            let response = {
+                success: false,
+                payload: {},
+            }
+            try {
+                let dataResult = await bookingSchema.find(
+                    { activity_id: id },
                     '-__v',
                 )
                 response.payload.data = dataResult
