@@ -49,7 +49,7 @@ module.exports = {
                 payload: {},
             }
             try {
-                let dataResult = await favoriteSchema.deleteOne({ _id: id })
+                let dataResult = await favoriteSchema.deleteOne({ activity_id : id })
                 response.payload.data = dataResult
                 response.success = true
             } catch (err) {
@@ -70,7 +70,7 @@ module.exports = {
             }
             try {
                 let dataResult = await favoriteSchema.find(
-                    { booking_user_id: id },
+                    { user_id: id },
                     '-__v',
                 )
                 response.payload.data = dataResult
