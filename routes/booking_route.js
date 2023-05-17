@@ -17,8 +17,7 @@ const {
 
 router.post('/insert', [
     body('booking_user_id').notEmpty(),
-    body('booking_date').notEmpty(),
-    body('booking_time').notEmpty(),
+    body('booking_datetime').notEmpty(),
     body('booking_amount').notEmpty(),
     body('booking_total_price').notEmpty(),
     body('booking_status').notEmpty(),
