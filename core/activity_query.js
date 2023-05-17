@@ -24,31 +24,27 @@ module.exports = {
     searchActivityQuery: async (search) => {
         return connect().then(async (mongoose) => {
             let response = {
-                success: false,
-                payload: {},
-            }
+              success: false,
+              payload: {},
+            };
             try {
-                let dataResult = await activitySchema.find(
-                    {
-                        $or: [
-                            { activity_name: search },
-                            { district: search }
-                        ]
-                    },
-                    '-__v',
-                )
-                response.payload.data = dataResult
-                response.success = true
-    
-               
+              const regex = new RegExp(search, 'i');
+              const dataResult = await activitySchema.find(
+                { $or: [{ activity_name: regex }, { district: regex }] },
+                '-__v',
+              );
+              response.payload.data = dataResult;
+              response.success = true;
             } catch (err) {
-                response.success = false
+              response.success = false;
             } finally {
-                mongoose.connection.close()
-                return response
+              mongoose.connection.close();
+              return response;
             }
-        })
-    },
+          });
+        },
+
+
     getActivityQueryById: async (id) => {
         return connect().then(async (mongoose) => {
             let response = {
