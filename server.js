@@ -27,6 +27,8 @@ const routeUpload = require("./routes/upload_route");
 
 const routeMessage = require("./routes/message_route");
 
+const routeInsight = require("./routes/insight_route");
+
 app.get("/", (req, res) => {
   res.status(200).json({
     message: "THIS IS AN API",
@@ -42,6 +44,8 @@ app.use("/favorite_activity", routeFavoriteActivity);
 app.use("/upload", routeUpload);
 
 app.use("/message", routeMessage);
+
+app.use("/insight", routeInsight);
 
 app.use((req, res, next) => {
   const err = new Error("Not Found.");
