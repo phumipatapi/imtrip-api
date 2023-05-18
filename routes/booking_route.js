@@ -12,7 +12,8 @@ const {
     updateBookingByIdController,
     updateStatusBookingByIdController,
     getBookingByUserIdController,
-    getBookingByActivityIdController
+    getBookingByActivityIdController,
+    getBookingByCreatedUserController
 } = require('../controller/booking_controller')
 
 
@@ -68,5 +69,9 @@ router.get('/get_by_activity_id/:id', [
 ], apiValidation, getBookingByActivityIdController,
 )
 
+router.get('/get_by_created_id/:id', [
+    param('id').notEmpty(),
+], apiValidation, getBookingByCreatedUserController,
+)
 
 module.exports = router

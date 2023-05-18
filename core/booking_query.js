@@ -147,5 +147,25 @@ module.exports = {
             }
         })
 
-    }
+    }, getBookingQueryByCreatedUser : async (id) => {
+        return connect().then(async (mongoose) => {
+            let response = {
+                success: false,
+                payload: {},
+            }
+            try {
+                let dataResult = await bookingSchema.find(
+                    { created_user_id: id },
+                    '-__v',
+                )
+                response.payload.data = dataResult
+                response.success = true
+            } catch (err) {
+                response.success = false
+            } finally {
+                mongoose.connection.close()
+                return response
+            }
+        })}
+
 }

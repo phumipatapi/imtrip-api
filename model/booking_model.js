@@ -5,7 +5,8 @@ const {
     deleteBookingQueryById,
     updateBookingQueryById,
     getBookingByUserId,
-    getBookingQueryByActivityId
+    getBookingQueryByActivityId,
+    getBookingQueryByCreatedUser
 } = require('../core/booking_query')
 const { successValidator } = require('../functions/functions')
 
@@ -106,6 +107,18 @@ module.exports = {
     getBookingByActivityId: async (id) => {
         try {
             let response = await getBookingQueryByActivityId(id)
+            return successValidator(
+                response,
+                'Get data successful.',
+                'Failed to get data.',
+            )
+        } catch (err) {
+            console.log(err)
+        }
+    },
+    getBookingByCreatedUser: async (id) => {
+        try {
+            let response = await getBookingQueryByCreatedUser(id)
             return successValidator(
                 response,
                 'Get data successful.',
