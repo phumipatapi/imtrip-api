@@ -21,7 +21,7 @@ const activitySchema = mongoose.Schema({
     activity_price: getMongooseType('Number', true),
     status: getMongooseType('String', true),
     user_id: getMongooseType('String', true),
-    activity_rating: getMongooseType('Number', true),
+    activity_rating: getMongooseType('Number', false),
 },
     {
         timestamps: {
