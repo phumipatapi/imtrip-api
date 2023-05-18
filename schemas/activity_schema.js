@@ -22,6 +22,7 @@ const activitySchema = mongoose.Schema({
     status: getMongooseType('String', true),
     user_id: getMongooseType('String', true),
     activity_rating: getMongooseType('Number', true),
+    engagement: getMongooseType('Number', false),
 },
     {
         timestamps: {

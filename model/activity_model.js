@@ -104,6 +104,7 @@ module.exports = {
             console.log(err)
         }
     },
+ 
     getActivityByUserId: async (id) => {
         try {
             let response = await getActivityByUserId(id)

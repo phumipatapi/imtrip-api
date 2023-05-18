@@ -21,7 +21,7 @@ module.exports = {
             }
         })
     },
-    getInsightById: async (id) => {
+    getInsightQueryById: async (id) => {
         return connect().then(async (mongoose) => {
             let response = {
                 success: false,
@@ -87,7 +87,7 @@ module.exports = {
             }
         })
     },
-    getInsightByActivityId: async (id) => {
+    getInsightQueryByActivityId: async (id) => {
         return connect().then(async (mongoose) => {
             let response = {
                 success: false,
