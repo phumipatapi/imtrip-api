@@ -11,6 +11,8 @@ const PORT = process.env.PORT || 4000;
 
 const app = express();
 
+const server = require("http").createServer(app);
+
 app.use(cors());
 app.use(express.json());
 app.use(express.urlencoded({ extended: false }));
@@ -22,6 +24,8 @@ const routeBooking = require("./routes/booking_route");
 const routeFavoriteActivity = require("./routes/favorite_activity_route");
 
 const routeUpload = require("./routes/upload_route");
+
+const routeMessage = require("./routes/message_route");
 
 app.get("/", (req, res) => {
   res.status(200).json({
@@ -36,6 +40,8 @@ app.use("/booking", routeBooking);
 app.use("/favorite_activity", routeFavoriteActivity);
 
 app.use("/upload", routeUpload);
+
+app.use("/message", routeMessage);
 
 app.use((req, res, next) => {
   const err = new Error("Not Found.");
@@ -53,6 +59,9 @@ app.use((err, req, res, next) => {
   });
 });
 
-app.listen(PORT, () => {
+server.listen(PORT, () => {
   console.log("Running on PORT:" + PORT);
 });
+
+const { webSocketInitialize } = require("./websocket");
+webSocketInitialize(server);

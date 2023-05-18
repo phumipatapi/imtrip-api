@@ -13,7 +13,7 @@ const bookingSchema = mongoose.Schema({
     activity_district : getMongooseType('String', true),
     booking_user_name : getMongooseType('String', true),
     booking_user_phone : getMongooseType('String', true),
-    booking_user_image : getMongooseType('String', true),
+   
     created_user_id: getMongooseType('String', true),
     
 },
