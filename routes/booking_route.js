@@ -28,6 +28,7 @@ router.post('/insert', [
     body('activity_district').notEmpty(),
     body('booking_user_name').notEmpty(),
     body('booking_user_phone').notEmpty(),
+    body('activity_image').notEmpty(),
     // body('booking_user_image').notEmpty(),
 ], apiValidation, insertBookingController,
 )

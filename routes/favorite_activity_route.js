@@ -19,6 +19,7 @@ router.post('/insert', [
     body('activity_district').notEmpty(),
     body('activity_price').notEmpty(),
     body('activity_rating').notEmpty(),
+    body('activity_image').notEmpty(),
     body('user_id').notEmpty(),
 ], apiValidation, insertFavoriteController,
 )
