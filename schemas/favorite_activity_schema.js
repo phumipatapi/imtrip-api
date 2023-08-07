@@ -8,6 +8,7 @@ const favoriteSchema = mongoose.Schema({
     activity_district : getMongooseType('String', true),
     activity_price : getMongooseType('Number', true),
     activity_rating : getMongooseType('Number', true),
+    activity_image: getMongooseType('String', true),
     user_id : getMongooseType('String', true),
 },
     {
